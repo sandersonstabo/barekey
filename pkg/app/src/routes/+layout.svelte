@@ -2,8 +2,11 @@
 	import './layout.css';
 	import "@fontsource/google-sans-flex";
 
+	import { IconMoonFilled, IconSunFilled } from "@tabler/icons-svelte";
+
 	import favicon from '$lib/assets/favicon.svg';
-	import { ModeWatcher } from 'mode-watcher';
+	import { mode, ModeWatcher, toggleMode } from 'mode-watcher';
+    import { Button } from '$lib/components/ui/button';
 
 	let { children } = $props();
 </script>
@@ -15,3 +18,11 @@
 
 <ModeWatcher />
 {@render children()}
+
+<Button class="absolute top-4 right-4" onclick={toggleMode}>
+	{#if mode.current === "dark"}
+		<IconSunFilled />
+	{:else}
+		<IconMoonFilled />
+	{/if}
+</Button>
